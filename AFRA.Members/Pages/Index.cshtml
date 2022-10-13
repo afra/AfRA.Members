@@ -1,0 +1,88 @@
+﻿@page
+@using AFRA.Members.database
+@using System.Globalization
+@model IndexModel
+@{
+	ViewData["Title"] = "Members";
+	Layout = "_LayoutNoContainer";
+}
+
+<div class="text-center">
+	<h1 class="display-5">
+		Members
+		<a class="btn btn-lg btn-primary" href="/AddMember">Add</a>
+
+	</h1>
+
+	<!-- datatables? -->
+	<table class="table table-striped table-hover">
+		<thead>
+		<tr>
+			<th scope="col">Name</th>
+			<th scope="col">Address</th>
+			<th scope="col">Email</th>
+			<th scope="col">Phone</th>
+			<th scope="col">DoB</th>
+			<th scope="col">Membership</th>
+			<th scope="col">Fee</th>
+			<th scope="col">Notes</th>
+			<th scope="col">Actions</th>
+		</tr>
+		</thead>
+		<tbody>
+		@foreach (var member in new Database.DbConn().Members.OrderBy(p => p.FirstName.ToLower())) {
+			<tr>
+				<td>
+					<b>@member.FirstName</b> @member.LastName
+					<br/>
+					<small>@member.Nick</small>
+				</td>
+				<td>
+					@member.Street
+					<small>@member.FirstAddressLine</small>
+					<br/>
+					<small>@member.Zip <b>@member.City</b>, @member.Country</small>
+				</td>
+				<td>
+					@member.Email
+				</td>
+				<td>
+					@member.Phone
+				</td>
+				<td>
+					@member.DateOfBirth?.ToString("yyyy-MM-dd")
+				</td>
+				<td>
+					@member.MembershipStart?.ToString("yyyy-MM-dd")
+					@if (member.MembershipEnd?.Year > 2000) {
+						<br/>
+						<b>@member.MembershipEnd?.ToString("yyyy-MM-dd")</b>
+					}
+					else if (member.MembershipStart?.Year > 2000) {
+						<br/>
+						<b style="color: green">active</b>
+					}
+					else {
+						<b style="color: red">unknown</b>
+					}
+				</td>
+				<td>
+					@if (member.MonthlyFeeCents != null) {
+						@(member.MonthlyFeeCents / 100d)
+						@Html.Raw("&euro;")
+					}
+				</td>
+				<td>
+					@member.Notes?.Delimit(20, "...")
+				</td>
+				<td>
+					<div class="btn-group" role="group">
+						<a class="btn btn-sm btn-secondary" href="/GenMail/@member.MemberId">Generate mail</a>
+						<a class="btn btn-sm btn-primary" href="/EditMember/@member.MemberId">Edit</a>
+					</div>
+				</td>
+			</tr>
+		}
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,10 @@
+@page
+@using AFRA.Members.database
+@{
+	Response.Headers.ContentType = "text/plain";
+	Response.Headers.ContentDisposition = "attachment; filename=\"afra-members-export.txt\"";
+	Layout = null;
+	foreach (var member in new Database.DbConn().Members.Where(p => !string.IsNullOrWhiteSpace(p.Email))) {
+		@Html.Raw($"{member.FirstName},{member.LastName},{member.Email}\n")
+	}
+}

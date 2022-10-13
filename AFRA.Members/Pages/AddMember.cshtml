@@ -1,0 +1,148 @@
+﻿@page
+@using AFRA.Members.database
+@model AFRA.Members.Pages.AddMember
+@{
+	ViewData["Title"] = "Add Member";
+}
+
+<div class="text-center">
+	<h1 class="display-5">
+		Add Member
+	</h1>
+</div>
+
+<form method="POST">
+	<h3>Personal details</h3>
+	<div class="mb-3">
+		<label for="first_name" class="form-label">First name (required)</label>
+		<input type="text" maxlength="100" class="form-control" id="first_name" name="first_name" autofocus required>
+	</div>
+	<div class="mb-3">
+		<label for="last_name" class="form-label">Last name (required)</label>
+		<input type="text" maxlength="100" class="form-control" id="last_name" name="last_name" required>
+	</div>
+	<div class="mb-3">
+		<label for="nick" class="form-label">Nickname</label>
+		<input type="text" maxlength="100" class="form-control" id="nick" name="nick">
+	</div>
+	<div class="mb-3">
+		<label for="dob" class="form-label">Date of birth</label>
+		<input type="date" class="form-control" id="dob" name="dob">
+	</div>
+	<div class="mb-3">
+		<label for="language" class="form-label">Language</label>
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="language" id="language_de" value="de" checked>
+			<label class="form-check-label" for="language_de">
+				German
+			</label>
+		</div>
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="language" id="language_en" value="en">
+			<label class="form-check-label" for="language_en">
+				English
+			</label>
+		</div>
+	</div>
+
+	<h3>Contact details</h3>
+	<div class="mb-3">
+		<label for="street" class="form-label">Street (required)</label>
+		<input type="text" maxlength="100" class="form-control" id="street" name="street" required>
+	</div>
+	<div class="mb-3">
+		<label for="zip" class="form-label">ZIP Code (required)</label>
+		<input type="text" maxlength="100" class="form-control" id="zip" name="zip" required>
+	</div>
+	<div class="mb-3">
+		<label for="city" class="form-label">City (required)</label>
+		<input type="text" maxlength="100" class="form-control" id="city" name="city" required>
+	</div>
+	<div class="mb-3">
+		<label for="country" class="form-label">Country (required)</label>
+		<input type="text" maxlength="100" class="form-control" id="country" name="country" required>
+	</div>
+	<div class="mb-3">
+		<label for="first_address_line" class="form-label">First Address Line (c/o)</label>
+		<input type="text" maxlength="100" class="form-control" id="first_address_line" name="first_address_line">
+	</div>
+	<div class="mb-3">
+		<label for="email" class="form-label">Email (required)</label>
+		<input type="email" maxlength="100" class="form-control" id="email" name="email" required>
+	</div>
+	<div class="mb-3">
+		<label for="gpg" class="form-label">GPG Key ID</label>
+		<input type="text" maxlength="100" class="form-control" id="gpg" name="gpg">
+	</div>
+	<div class="mb-3">
+		<label for="phone" class="form-label">Phone no.</label>
+		<input type="text" maxlength="100" class="form-control" id="phone" name="phone">
+	</div>
+
+	<h3>Memberhship</h3>
+	<div class="mb-3">
+		<label for="membership_start" class="form-label">Membership Start (required)</label>
+		<input type="date" class="form-control" id="membership_start" name="membership_start" value="@DateTime.Now.ToString("yyyy-MM-dd")" required="">
+	</div>
+	<div class="mb-3">
+		<label for="membership_end" class="form-label">Membership End</label>
+		<input type="date" class="form-control" id="membership_end" name="membership_end">
+	</div>
+	<div class="mb-3">
+		<div class="form-check">
+			<input class="form-check-input" type="checkbox" id="founding" name="founding">
+			<label for="founding" class="form-label">Founding member</label>
+		</div>
+		<div class="form-check">
+			<input class="form-check-input" type="checkbox" id="non_voting" name="non_voting">
+			<label for="non_voting" class="form-label">Non voting member (Fördermitglied)</label>
+		</div>
+	</div>
+
+	<h3>Accounting</h3>
+	<div class="mb-3">
+		<label for="accounting_query" class="form-label">Accounting Query</label>
+		<input type="text" maxlength="100" class="form-control" id="accounting_query" name="accounting_query">
+	</div>
+	<div class="mb-3">
+		<label for="iban" class="form-label">IBAN</label>
+		<input type="text" maxlength="100" class="form-control" id="iban" name="iban">
+	</div>
+	<div class="mb-3">
+		<label for="bic" class="form-label">BIC</label>
+		<input type="text" maxlength="100" class="form-control" id="bic" name="bic">
+	</div>
+	<div class="mb-3">
+		<label for="type_of_payment" class="form-label">Type of payment</label>
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="type_of_payment" id="type_of_payment_bar" value="Cash">
+			<label class="form-check-label" for="type_of_payment_bar">
+				Cash
+			</label>
+		</div>
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="type_of_payment" id="type_of_payment_bank_transfer" value="Bank transfer" checked>
+			<label class="form-check-label" for="type_of_payment_bank_transfer">
+				Bank transfer
+			</label>
+		</div>
+	</div>
+	<div class="mb-3">
+		<div class="form-check">
+			<input class="form-check-input" type="checkbox" id="send_donation_receipt" name="send_donation_receipt">
+			<label for="send_donation_receipt" class="form-label">Send donation receipt</label>
+		</div>
+	</div>
+	<div class="mb-3">
+		<label for="fee" class="form-label">Monthly fee (cents) (required)</label>
+		<input type="text" maxlength="100" class="form-control" id="fee" name="fee" value="2000">
+	</div>
+
+	<h3>Other</h3>
+	<div class="mb-3">
+		<label for="notes" class="form-label">Notes</label>
+		<textarea maxlength="500" class="form-control" id="notes" name="notes"></textarea>
+	</div>
+	<button type="submit" class="btn btn-secondary" name="another" value="true">Add another</button>
+	<button type="submit" class="btn btn-primary" name="another" value="false">Add</button>
+</form>

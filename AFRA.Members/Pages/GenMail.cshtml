@@ -1,0 +1,90 @@
+﻿@page "{id}"
+@using AFRA.Members.database
+@model AFRA.Members.Pages.GenMail
+@{
+	ViewData["Title"] = "Edit Member";
+	if (Request.Method == "POST" && Request.Form["action"] == "delete") {
+		return;
+	}
+	var member = new Database.DbConn().Members.First(p => p.MemberId == int.Parse(RouteData.Values["id"]!.ToString()!));
+	var name = string.IsNullOrWhiteSpace(member.Nick) ? member.FirstName + " " + member.LastName : member.Nick;
+}
+
+<div class="text-center">
+	<h1 class="display-5">
+		Generated emails for @name
+	</h1>
+</div>
+
+@if (member.MonthlyFeeCents.HasValue) {
+	@switch (member.Language) {
+		case "de":
+			<textarea maxlength="1000" rows="12" class="form-control" id="welcome">
+Subject: Willkommen bei der AfRA!
+
+Hallo @name,
+
+Der Vorstand hat deinen Mitgliedsantrag angenommen. Herzlich Willkommen bei uns! Wenn du Fragen zu deiner Mitgliedschaft hast, oder sich bspw. deine Adresse ändert, schreib uns einfach an vorstand@afra-berlin.de.
+
+@if (member.TypeOfPayment?.ToLowerInvariant() == "cash") {
+	@Html.Raw("Bitte denke daran, deinen Mitgliedsbeitrag rechtzeitig über die von dir angegebenen {member.MonthlyFeeCents/100d}&euro; bar beim Kassenwart zu bezahlen.")
+}
+else {
+	@Html.Raw($"Bitte denke daran, einen Dauerauftrag über die von dir angegebenen {member.MonthlyFeeCents/100d}&euro; einzurichten. Die Kontodaten findest du unter https://afra-berlin.de/dokuwiki/doku.php?id=mitgliedschaft.")
+}
+
+
+Liebe Grüße,
+Laura ~ zotan
+</textarea>
+			<br/>
+			break;
+		case "en":
+			<textarea maxlength="1000" rows="12" class="form-control" id="welcome">
+Subject: Welcome to the AfRA!
+
+Dear @name,
+
+The board has accepted your membership application and is pleased to welcome you to the AfRA hackerspace. If you have any questions regarding your membership, or e.g. your address (physical or email) changes, send us an email to vorstand@afra-berlin.de.
+
+@if (member.TypeOfPayment?.ToLowerInvariant() == "cash") {
+	@Html.Raw($"Please remember to pay your membership fee of {member.MonthlyFeeCents/100d}&euro; in cash to the treasurer on time.")
+}
+else {
+	@Html.Raw($"Please remember to set up a scheduled monthly bank transfer of {member.MonthlyFeeCents/100d}&euro; to our account. The account details can be found under https://afra-berlin.de/dokuwiki/doku.php?id=en:mitgliedschaft.")
+}
+
+
+Kind regards,
+Laura ~ zotan
+</textarea>
+			<br/>
+			break;
+	}
+}
+else {
+	<div class="alert alert-warning" role="alert">
+		Could not generate welcome mail, missing fee amount
+	</div>
+}
+
+@if (!string.IsNullOrWhiteSpace(member.Nick) && !string.IsNullOrWhiteSpace(member.Email)) {
+	<textarea maxlength="1000" rows="12" class="form-control" id="zeltophil">
+Subject: Neues AfRA-Mitglied
+
+Hi zeltophil,
+
+wir haben ein neues Mitglied:
+
+Nickname: @name
+Mail: @member.Email
+
+Liebe Grüße,
+Laura ~ zotan
+</textarea>
+}
+else {
+	<div class="alert alert-warning" role="alert">
+		Could not generate zeltophil mail, missing nick or email
+	</div>
+}
