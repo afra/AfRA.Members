@@ -47,8 +47,9 @@ public class EditMember : PageModel {
 		member.MonthlyFeeCents     = string.IsNullOrEmpty(Request.Form["fee"]) ? null : int.Parse(Request.Form["fee"]);
 		member.Notes               = Request.Form["notes"];
 		member.NonVoting           = Request.Form["non_voting"] == "on";
+		member.UpdatedAt           = DateTime.Now;
 
-	db.Update(member);
+		db.Update(member);
 
 		Response.Redirect("/");
 	}

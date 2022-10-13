@@ -35,7 +35,9 @@ public class AddMember : PageModel {
 			SendDonationReceipt = Request.Form["send_donation_receipt"] == "on",
 			MonthlyFeeCents     = string.IsNullOrEmpty(Request.Form["fee"]) ? null : int.Parse(Request.Form["fee"]),
 			Notes               = Request.Form["notes"],
-			NonVoting           = Request.Form["non_voting"] == "on"
+			NonVoting           = Request.Form["non_voting"] == "on",
+			CreatedAt           = DateTime.Now,
+			UpdatedAt           = DateTime.Now
 		};
 
 		db.InsertWithIdentity(member);
