@@ -51,6 +51,6 @@ public class EditMember : PageModel {
 
 		db.Update(member);
 
-		Response.Redirect("/");
+		Response.Redirect($"/#member_{member.MemberId}");
 	}
 }
