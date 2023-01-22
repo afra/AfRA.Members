@@ -85,4 +85,6 @@
 		}
 		</tbody>
 	</table>
+	The AfRA currently has <b>@(new Database.DbConn().Members.Count(p => p.MembershipStart.HasValue && p.MembershipStart.Value.Year > 2000 && (!p.MembershipEnd.HasValue || p.MembershipEnd.Value.Year < 2000)))</b> active members.
+	Of these, <b>@(new Database.DbConn().Members.Count(p => p.MembershipStart.HasValue && p.MembershipStart.Value.Year > 2000 && (!p.MembershipEnd.HasValue || p.MembershipEnd.Value.Year < 2000) && (!p.NonVoting.HasValue || !p.NonVoting.Value)))</b> are voting members.
 </div>
