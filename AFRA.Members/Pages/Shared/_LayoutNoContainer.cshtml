@@ -6,6 +6,7 @@
 	<title>@ViewData["Title"] - AFRA.Members</title>
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+	@await RenderSectionAsync("Stylesheets", false)
 </head>
 <body>
 <header>
@@ -29,7 +30,7 @@
 		</div>
 	</nav>
 </header>
-<div>
+<div class="container-custom">
 	<main role="main" class="pb-3">
 		@RenderBody()
 	</main>

@@ -51,6 +51,8 @@ public class EditMember : PageModel {
 
 		db.Update(member);
 
-		Response.Redirect($"/#member_{member.MemberId}");
+		var query = string.IsNullOrWhiteSpace(member.Nick) ? $"{member.FirstName} {member.LastName}" : member.Nick;
+		
+		Response.Redirect($"/#member_{query}");
 	}
 }

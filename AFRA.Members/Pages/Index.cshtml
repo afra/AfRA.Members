@@ -5,6 +5,34 @@
 @{
 	ViewData["Title"] = "Members";
 	Layout = "_LayoutNoContainer";
+
+	var db = new Database.DbConn();
+}
+
+@section Stylesheets {
+	<link rel="stylesheet" href="~/lib/datatables/dataTables.bootstrap5.min.css"/>
+}
+
+@section Scripts {
+	<script src="~/lib/datatables/jquery.dataTables.min.js"></script>
+	<script src="~/lib/datatables/dataTables.bootstrap5.min.js"></script>
+	<script>
+	$(document).ready( function () {
+		let search = "";
+		
+		if (window.location.hash.startsWith("#member_")) {
+			search = decodeURI(window.location.hash.substring(8));
+		}
+		
+		$('#members').DataTable({
+        	lengthMenu: [10, 25, 50, 100, -1],
+        	pageLength: 25,
+        	search: {
+				search: search,
+			}
+        });
+    } );
+	</script>
 }
 
 <div class="text-center">
@@ -13,9 +41,9 @@
 		<a class="btn btn-lg btn-primary" href="/AddMember">Add</a>
 
 	</h1>
-
-	<!-- datatables? -->
-	<table class="table table-striped table-hover">
+</div>
+<div>
+	<table class="table table-striped table-hover" id="members">
 		<thead>
 		<tr>
 			<th scope="col">Name</th>
@@ -30,7 +58,7 @@
 		</tr>
 		</thead>
 		<tbody>
-		@foreach (var member in new Database.DbConn().Members.OrderBy(p => p.FirstName.ToLower())) {
+		@foreach (var member in db.Members.OrderBy(p => p.FirstName!.ToLower())) {
 			<tr id="member_@member.MemberId">
 				<td>
 					<b>@member.FirstName</b> @member.LastName
@@ -85,8 +113,13 @@
 		}
 		</tbody>
 	</table>
-	The AfRA currently has <b>@(new Database.DbConn().Members.Count(p => p.MembershipStart.HasValue && p.MembershipStart.Value.Year > 2000 && (!p.MembershipEnd.HasValue || p.MembershipEnd.Value.Year < 2000)))</b> active members.
-	Of these, <b>@(new Database.DbConn().Members.Count(p => p.MembershipStart.HasValue && p.MembershipStart.Value.Year > 2000 && (!p.MembershipEnd.HasValue || p.MembershipEnd.Value.Year < 2000) && (!p.NonVoting.HasValue || !p.NonVoting.Value)))</b> are voting members.
+	@{
+		var activeMembers = db.Members.Where(p => p.MembershipStart.HasValue && p.MembershipStart.Value.Year > 2000 && (!p.MembershipEnd.HasValue || p.MembershipEnd.Value.Year < 2000));
+		var votingMembers = activeMembers.Where(p => !p.NonVoting.HasValue || !p.NonVoting.Value);
+		var nonVotingMembers = activeMembers.Where(p => p.NonVoting.HasValue && p.NonVoting.Value);
+	}
+	The AfRA currently has <b>@activeMembers.Count()</b> active members.
+	Of these, <b>@votingMembers.Count()</b> are voting members.
 	<br/>
-	Non-voting members are: @string.Join(", ", new Database.DbConn().Members.Where(p => p.MembershipStart.HasValue && p.MembershipStart.Value.Year > 2000 && (!p.MembershipEnd.HasValue || p.MembershipEnd.Value.Year < 2000) && p.NonVoting.HasValue && p.NonVoting.Value).Select(p => string.IsNullOrWhiteSpace(p.Nick) ? p.Nick : $"{p.FirstName} {p.LastName}"))
+	Non-voting members are: @string.Join(", ", nonVotingMembers.Select(p => string.IsNullOrWhiteSpace(p.Nick) ? p.Nick : $"{p.FirstName} {p.LastName}"))
 </div>

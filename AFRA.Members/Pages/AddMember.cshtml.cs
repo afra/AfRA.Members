@@ -42,6 +42,8 @@ public class AddMember : PageModel {
 
 		db.InsertWithIdentity(member);
 
-		Response.Redirect(Request.Form["another"] == "true" ? "/AddMember" : "/");
+		var query = string.IsNullOrWhiteSpace(member.Nick) ? $"{member.FirstName} {member.LastName}" : member.Nick;
+		
+		Response.Redirect(Request.Form["another"] == "true" ? "/AddMember" : $"/#member_{query}");
 	}
 }
