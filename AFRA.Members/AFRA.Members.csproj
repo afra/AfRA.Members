@@ -7,10 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="linq2db" Version="4.3.0" />
-      <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.10" />
-      <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.10" />
+      <PackageReference Include="linq2db" Version="4.4.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.2" />
+      <PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.2" />
       <PackageReference Include="System.Data.SQLite.Core" Version="1.0.115" />
+      <PackageReference Include="System.Data.SQLite.Core.osx.arm64" Version="1.0.117" />
     </ItemGroup>
 
 </Project>
