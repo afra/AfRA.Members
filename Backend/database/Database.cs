@@ -1,9 +1,9 @@
-using AFRA.Members.database.Tables;
+using AFRA.Members.Backend.database.Tables;
 using LinqToDB;
 using LinqToDB.Configuration;
 using LinqToDB.Data;
 
-namespace AFRA.Members.database;
+namespace AFRA.Members.Backend.database;
 
 public class Database {
 	public class ConnectionStringSettings : IConnectionStringSettings {

@@ -1,2 +1,2 @@
-# AfRA tools repo
-This repository contains various tools for managing the [AfRA Berlin](https://afra-berlin.de) hackerspace.
+# AfRA.Members
+WebUI for managing the member database of the [AfRA Berlin](https://afra-berlin.de) hackerspace.

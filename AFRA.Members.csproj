@@ -14,4 +14,10 @@
       <PackageReference Include="System.Data.SQLite.Core.osx.arm64" Version="1.0.117" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove=".gitignore" />
+      <None Remove="database.db" />
+      <None Remove="database.db.bak" />
+    </ItemGroup>
+
 </Project>

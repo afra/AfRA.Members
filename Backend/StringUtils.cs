@@ -1,8 +1,4 @@
-using System.Security.Cryptography;
-using System.Text;
-using System.Web;
-
-namespace AFRA.Members;
+namespace AFRA.Members.Backend;
 
 public static class StringExtensions {
 	public static string Delimit(this string input, int max) => input.PadRight(max, ' ')[..max].TrimEnd();

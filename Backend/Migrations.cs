@@ -1,9 +1,9 @@
-using AFRA.Members.database;
-using AFRA.Members.database.Tables;
+using AFRA.Members.Backend.database;
+using AFRA.Members.Backend.database.Tables;
 using LinqToDB;
 using LinqToDB.Data;
 
-namespace AFRA.Members;
+namespace AFRA.Members.Backend;
 
 public static class Migrations {
 	private const int DbVer = 2;

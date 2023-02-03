@@ -1,6 +1,6 @@
 using LinqToDB.Mapping;
 
-namespace AFRA.Members.database.Tables;
+namespace AFRA.Members.Backend.database.Tables;
 
 [Table(Name = "DbInfo")]
 public class DbInfo {

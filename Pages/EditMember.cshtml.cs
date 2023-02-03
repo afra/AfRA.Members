@@ -1,4 +1,4 @@
-﻿using AFRA.Members.database;
+﻿using AFRA.Members.Backend.database;
 using LinqToDB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
