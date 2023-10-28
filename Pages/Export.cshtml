@@ -1,10 +1,11 @@
 @page
 @using AFRA.Members.Backend.database
 @{
-	Response.Headers.ContentType = "text/plain";
-	Response.Headers.ContentDisposition = "attachment; filename=\"afra-members-export.txt\"";
+	Response.Headers.ContentType = "text/csv";
+	Response.Headers.ContentDisposition = "attachment; filename=\"afra-members-export.csv\"";
 	Layout = null;
-	foreach (var member in new Database.DbConn().Members.Where(p => !string.IsNullOrWhiteSpace(p.Email))) {
-		@Html.Raw($"{member.FirstName},{member.LastName},{member.Email}\n")
+	@Html.Raw("FirstName,LastName,Nick,Email,MonthlyFeeCents\n")
+	foreach (var member in new Database.DbConn().Members.Where(p => !p.MembershipEnd.HasValue || p.MembershipEnd.Value.Year <= 2000)) {
+		@Html.Raw($"{member.FirstName},{member.LastName},{member.Nick},{member.Email},{member.MonthlyFeeCents}\n")
 	}
 }
