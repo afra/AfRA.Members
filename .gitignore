@@ -7,3 +7,4 @@ database.db
 database.db.bak
 .DS_Store
 .idea
+/result

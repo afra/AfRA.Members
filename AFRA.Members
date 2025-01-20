@@ -1,0 +1,15 @@
+#! /nix/store/gwgqdl0242ymlikq9s9s62gkp5cvyal3-bash-5.2p37/bin/bash -e
+export DOTNET_ROOT='/nix/store/94jdjki2p7gfq38f0yzxy591bh0h80w0-dotnet-runtime-wrapped-8.0.12/share/dotnet'
+PATH=${PATH:+':'$PATH':'}
+PATH=${PATH/':''/nix/store/94jdjki2p7gfq38f0yzxy591bh0h80w0-dotnet-runtime-wrapped-8.0.12/bin'':'/':'}
+PATH='/nix/store/94jdjki2p7gfq38f0yzxy591bh0h80w0-dotnet-runtime-wrapped-8.0.12/bin'$PATH
+PATH=${PATH#':'}
+PATH=${PATH%':'}
+export PATH
+LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+':'$LD_LIBRARY_PATH':'}
+LD_LIBRARY_PATH=${LD_LIBRARY_PATH/':''/nix/store/aiw8lrc9f115z9fj6khijgk9frj7i772-icu4c-74.2/lib'':'/':'}
+LD_LIBRARY_PATH='/nix/store/aiw8lrc9f115z9fj6khijgk9frj7i772-icu4c-74.2/lib'$LD_LIBRARY_PATH
+LD_LIBRARY_PATH=${LD_LIBRARY_PATH#':'}
+LD_LIBRARY_PATH=${LD_LIBRARY_PATH%':'}
+export LD_LIBRARY_PATH
+exec "/nix/store/x6cnprkpwys0myqrhgs44jqclvkmikvr-AFRA.MEMBERS/lib//AFRA.Members"  "$@" 
