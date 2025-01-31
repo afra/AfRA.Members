@@ -1,0 +1,142 @@
+[
+  {
+    "pname": "linq2db",
+    "version": "4.4.0",
+    "hash": "sha256-tr2dunAu/WALJ4e75ZGOBkxh6Z7L/m5nDSeNO9mFICg="
+  },
+  {
+    "pname": "Microsoft.AspNetCore.Mvc.Razor.Extensions",
+    "version": "6.0.0",
+    "hash": "sha256-TrR4soDtsyg+czs3P0nYByalKC6g6cmdQiRnOg6NRtA="
+  },
+  {
+    "pname": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation",
+    "version": "7.0.2",
+    "hash": "sha256-P9nqZu9f+PE0yzEy5EyF4SguebZMDeZ6sClifIOQrLo="
+  },
+  {
+    "pname": "Microsoft.AspNetCore.Razor.Language",
+    "version": "6.0.0",
+    "hash": "sha256-P0bdoAG+VBR/PuYQQN4tXhJomfXw+lArXx5UQqRoWlM="
+  },
+  {
+    "pname": "Microsoft.CodeAnalysis.Analyzers",
+    "version": "3.3.2",
+    "hash": "sha256-pDeaMqX7a01Hp1Qd9P/y/B2rEGAv2eIY0Ld/klBZW5g="
+  },
+  {
+    "pname": "Microsoft.CodeAnalysis.Common",
+    "version": "4.0.0",
+    "hash": "sha256-SfQYaC9FbN60PhSzU3iM56ZeUlb/Y2FFGEnF43/5luc="
+  },
+  {
+    "pname": "Microsoft.CodeAnalysis.CSharp",
+    "version": "4.0.0",
+    "hash": "sha256-ZGE+DM8siy3DHhBQcNesEHz9bEL4at+L6Cmj24+X/dc="
+  },
+  {
+    "pname": "Microsoft.CodeAnalysis.Razor",
+    "version": "6.0.0",
+    "hash": "sha256-j1/Mpe9Ta+4dhoa2+Zd7BaMm6MllJfaMtZ4pX+P2cqA="
+  },
+  {
+    "pname": "Microsoft.Data.Sqlite",
+    "version": "7.0.2",
+    "hash": "sha256-OGGEAYEPvnNW+yzH3B6sz5bXEHYehnLLGK73jI3xxKE="
+  },
+  {
+    "pname": "Microsoft.Data.Sqlite.Core",
+    "version": "7.0.2",
+    "hash": "sha256-FW3paVHyiNNXO12PoRaxRjiYAqMW5aCKQBLqayJbN3Y="
+  },
+  {
+    "pname": "Microsoft.Extensions.DependencyModel",
+    "version": "7.0.0",
+    "hash": "sha256-RDoSkuY6t/CKDFy2pjx9J+AAVg25BHHKg7WePDg0ixM="
+  },
+  {
+    "pname": "Microsoft.NETCore.Platforms",
+    "version": "2.1.2",
+    "hash": "sha256-gYQQO7zsqG+OtN4ywYQyfsiggS2zmxw4+cPXlK+FB5Q="
+  },
+  {
+    "pname": "SQLitePCLRaw.bundle_e_sqlite3",
+    "version": "2.1.2",
+    "hash": "sha256-XrG1nT9TfvDI5E0icxvDR2wHqqVxs/mhRRHePOQlLB8="
+  },
+  {
+    "pname": "SQLitePCLRaw.core",
+    "version": "2.1.2",
+    "hash": "sha256-bbymML2TTQJDKZbYXoiyYJnF6mh/PjKrzDkqWhLaHaY="
+  },
+  {
+    "pname": "SQLitePCLRaw.lib.e_sqlite3",
+    "version": "2.1.2",
+    "hash": "sha256-34lJgnGvODwrjn9WTkkBIg2jzYph/ARi1QSiKedCyUo="
+  },
+  {
+    "pname": "SQLitePCLRaw.provider.e_sqlite3",
+    "version": "2.1.2",
+    "hash": "sha256-e56+FgxEHqV3SGQx0ZAqzlscPxNUPXJ8Ls9rtqET1S4="
+  },
+  {
+    "pname": "Stub.System.Data.SQLite.Core.NetStandard",
+    "version": "1.0.115",
+    "hash": "sha256-TZEqV45YCSCYQrrPMnu64PI7oT7/2sAQV/BGqeDe9JI="
+  },
+  {
+    "pname": "System.Collections.Immutable",
+    "version": "5.0.0",
+    "hash": "sha256-GdwSIjLMM0uVfE56VUSLVNgpW0B//oCeSFj8/hSlbM8="
+  },
+  {
+    "pname": "System.Data.SQLite.Core",
+    "version": "1.0.115",
+    "hash": "sha256-bIVWw/dMTWwnA04hcRMVI2+ZqNtD75dAwAmTJj7F4iw="
+  },
+  {
+    "pname": "System.Data.SQLite.Core.osx.arm64",
+    "version": "1.0.117",
+    "hash": "sha256-oE+6F69lkZjFvo/WEHnOYIRvInEUii59UiiFxyjl5U8="
+  },
+  {
+    "pname": "System.Memory",
+    "version": "4.5.3",
+    "hash": "sha256-Cvl7RbRbRu9qKzeRBWjavUkseT2jhZBUWV1SPipUWFk="
+  },
+  {
+    "pname": "System.Memory",
+    "version": "4.5.4",
+    "hash": "sha256-3sCEfzO4gj5CYGctl9ZXQRRhwAraMQfse7yzKoRe65E="
+  },
+  {
+    "pname": "System.Reflection.Metadata",
+    "version": "5.0.0",
+    "hash": "sha256-Wo+MiqhcP9dQ6NuFGrQTw6hpbJORFwp+TBNTq2yhGp8="
+  },
+  {
+    "pname": "System.Runtime.CompilerServices.Unsafe",
+    "version": "5.0.0",
+    "hash": "sha256-neARSpLPUzPxEKhJRwoBzhPxK+cKIitLx7WBYncsYgo="
+  },
+  {
+    "pname": "System.Text.Encoding.CodePages",
+    "version": "4.5.1",
+    "hash": "sha256-PIhkv59IXjyiuefdhKxS9hQfEwO9YWRuNudpo53HQfw="
+  },
+  {
+    "pname": "System.Text.Encodings.Web",
+    "version": "7.0.0",
+    "hash": "sha256-tF8qt9GZh/nPy0mEnj6nKLG4Lldpoi/D8xM5lv2CoYQ="
+  },
+  {
+    "pname": "System.Text.Json",
+    "version": "7.0.0",
+    "hash": "sha256-198zqA6NR4lGCKgpdy/ptkS0jsYRT6KUjewtfi4Fi2k="
+  },
+  {
+    "pname": "System.Threading.Tasks.Extensions",
+    "version": "4.5.4",
+    "hash": "sha256-owSpY8wHlsUXn5xrfYAiu847L6fAKethlvYx97Ri1ng="
+  }
+]

@@ -19,7 +19,7 @@
 
       executables = [ "AFRA.Members" ];
 
-      nugetDeps = ./deps.nix;
+      nugetDeps = ./deps.json;
       meta = {
         mainProgram = "AFRA.Members";
       };
