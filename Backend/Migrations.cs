@@ -39,6 +39,10 @@ public static class Migrations {
 			db.InsertWithIdentity(new DbInfo { DbVer = 0 });
 		}
 
+		if(!db.DataProvider.GetSchemaProvider().GetSchema(db).Tables.Any(t => t.TableName == "Memberships")) {
+			db.CreateTable<Membership>();
+		}
+
 		Console.ForegroundColor = ConsoleColor.Yellow;
 		Console.WriteLine($"Database version: {db.DbInfo.ToList().First().DbVer}");
 

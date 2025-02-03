@@ -28,5 +28,6 @@ public class Database {
 		public DbConn() : base("db") { }
 		public ITable<DbInfo> DbInfo => this.GetTable<DbInfo>();
 		public ITable<Member>  Members => this.GetTable<Member>();
+		public ITable<Membership>  Memberships => this.GetTable<Membership>();
 	}
 }

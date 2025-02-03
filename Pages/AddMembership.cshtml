@@ -1,0 +1,38 @@
+﻿@page "{memberId}"
+@using AFRA.Members.Backend.database
+@model AFRA.Members.Pages.AddMembership
+@{
+	ViewData["Title"] = "Add Membership";
+	var member = new Database.DbConn().Members.First(p => p.MemberId == int.Parse(RouteData.Values["memberId"]!.ToString()!));
+}
+
+<div class="text-center">
+	<h1 class="display-5">
+		Add Membership for @member.Nick
+	</h1>
+</div>
+
+<form method="POST">
+	<h3>Memberhship</h3>
+	<div class="mb-3">
+		<label for="membership_start" class="form-label">Membership Start (required)</label>
+		<input type="date" class="form-control" id="membership_start" name="membership_start" value="@DateTime.Now.ToString("yyyy-MM-dd")" required="">
+	</div>
+	<div class="mb-3">
+		<label for="membership_end" class="form-label">Membership End</label>
+		<input type="date" class="form-control" id="membership_end" name="membership_end">
+	</div>
+
+	<h3>Accounting</h3>
+	<div class="mb-3">
+		<label for="fee" class="form-label">Monthly fee (cents) (required)</label>
+		<input type="number" min="100" class="form-control" id="fee" name="fee" value="2000">
+	</div>
+
+	<h3>Other</h3>
+	<div class="mb-3">
+		<label for="notes" class="form-label">Notes</label>
+		<textarea maxlength="500" class="form-control" id="notes" name="notes"></textarea>
+	</div>
+	<button type="submit" class="btn btn-primary">Add</button>
+</form>

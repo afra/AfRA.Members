@@ -2,6 +2,7 @@
 @using System.Globalization
 @using AFRA.Members.Backend
 @using AFRA.Members.Backend.database
+@using LinqToDB
 @model IndexModel
 @{
 	ViewData["Title"] = "Members";
@@ -24,9 +25,11 @@
 		if (window.location.hash.startsWith("#member_")) {
 			search = decodeURI(window.location.hash.substring(8));
 		}
+    using LinqToDB;
 		
 		$('#members').DataTable({
         	lengthMenu: [10, 25, 50, 100, -1],
+    using AFRA.Members.Backend.database.Tables;
         	pageLength: 25,
         	search: {
 				search: search,
@@ -59,8 +62,8 @@
 		</tr>
 		</thead>
 		<tbody>
-		@foreach (var member in db.Members.OrderBy(p => p.FirstName!.ToLower())) {
-			<tr id="member_@member.MemberId">
+		@foreach (var member in db.Members.LoadWith(x => x.Memberships).OrderBy(p => p.FirstName!.ToLower())) {
+			<tr id="member_@member.MemberId" data-member-id="@member.MemberId">
 				<td>
 					<b>@member.FirstName</b> @member.LastName
 					<br/>
@@ -82,7 +85,7 @@
 					@member.DateOfBirth?.ToString("yyyy-MM-dd")
 				</td>
 				<td>
-					@member.MembershipStart?.ToString("yyyy-MM-dd")
+					@* @member.MembershipStart?.ToString("yyyy-MM-dd")
 					@if (member.MembershipEnd?.Year > 2000) {
 						<br/>
 						<b>@member.MembershipEnd?.ToString("yyyy-MM-dd")</b>
@@ -93,13 +96,40 @@
 					}
 					else {
 						<b style="color: red">unknown</b>
-					}
+					} *@
+					<b>
+						@if(
+							member.Memberships.LastOrDefault()?.End == null ||
+							member.Memberships.LastOrDefault()?.End > DateTime.Now
+						) {
+							<b style="color: green">
+								Active
+								@if(member.Memberships.LastOrDefault()?.End != null) {
+									<span>until @member.Memberships.LastOrDefault()?.End?.ToString("yyyy-MM-dd")</span>
+								}
+							</b>
+						} else {
+							<b>Inactive, ended @member.Memberships.LastOrDefault()?.End?.ToString("yyyy-MM-dd")</b>
+						}
+					</b>
+					<ul>
+						@foreach(var membership in member.Memberships) {
+							<li data-member-id="@membership.MembershipId">
+								@membership.Start?.ToString("yyyy-MM-dd")
+								@if(@membership.End != null) {
+									<span>- @membership.End?.ToString("yyyy-MM-dd")</span>
+								} else {
+									<span> and active</span>
+								}
+								[@(membership.MonthlyFeeCents / 100)€]
+								<a class="btn btn-sm btn-secondary" href="/EditMembership/@membership.MembershipId">Edit</a>
+							</li>
+						}
+					</ul>
+					<a class="btn btn-sm btn-secondary" href="/AddMembership/@member.MemberId">+</a>
 				</td>
 				<td>
-					@if (member.MonthlyFeeCents != null) {
-						@(member.MonthlyFeeCents / 100d)
-						@Html.Raw("&euro;")
-					}
+					
 				</td>
 				<td>
 					@member.Notes?.Delimit(20, "...")

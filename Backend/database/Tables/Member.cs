@@ -2,7 +2,7 @@ using LinqToDB.Mapping;
 
 namespace AFRA.Members.Backend.database.Tables;
 
-[Table(Name = "Members")]
+[Table(Name = "members")]
 public class Member {
 	[Column(Name = "id"), PrimaryKey, Identity, NotNull] public int       MemberId            { get; set; }
 	[Column(Name = "last_name")]                         public string?   LastName            { get; set; }
@@ -32,4 +32,7 @@ public class Member {
 
 	[Column(Name = "updated_at"), NotNull] public DateTime UpdatedAt { get; set; }
 	[Column(Name = "non_voting")]          public bool?    NonVoting { get; set; }
+
+	[Association(ThisKey = "MemberId", OtherKey = "MemberId", CanBeNull = true)]
+	public IEnumerable<Membership> Memberships { get; set; } = new List<Membership>();
 }

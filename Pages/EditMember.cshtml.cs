@@ -7,9 +7,9 @@ namespace AFRA.Members.Pages;
 
 public class EditMember : PageModel {
 	public void OnGet() {
-		using var db       = new Database.DbConn();
-		var       memberId = int.Parse(RouteData.Values["id"]!.ToString()!);
-		var       member   = db.Members.First(p => p.MemberId == memberId);
+		// using var db       = new Database.DbConn();
+		// var       memberId = int.Parse(RouteData.Values["id"]!.ToString()!);
+		// var       member   = db.Members.First(p => p.MemberId == memberId);
 	}
 
 	public void OnPost() {
