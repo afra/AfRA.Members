@@ -50,7 +50,7 @@
             cp ${sqlite-interop}/* $out/lib/
           '';
 
-          nugetDeps = src + "/deps.json";
+          nugetDeps = self + "/deps.json";
           meta = {
             mainProgram = "AFRA.Members";
           };
