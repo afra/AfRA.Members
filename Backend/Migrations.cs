@@ -6,7 +6,7 @@ using LinqToDB.Data;
 namespace AFRA.Members.Backend;
 
 public static class Migrations {
-	private const int DbVer = 2;
+	private const int DbVer = 3;
 
 	private static readonly List<Migration> _migrations = new() {
 		new Migration(1, "update members set founding = replace(founding, 't', '1')"),
@@ -17,6 +17,18 @@ public static class Migrations {
 		new Migration(1, "update members set non_voting =  replace(non_voting, 'f', '0')"),
 		new Migration(2, "update members set type_of_payment =  replace(type_of_payment, 'Überweisung', 'Bank transfer')"),
 		new Migration(2, "update members set type_of_payment =  replace(type_of_payment, 'Bar', 'Cash')"),
+		new Migration(3, @"
+			INSERT INTO memberships (member_id, start, end, monthly_fee_cents, note, created_at, updated_at)
+			SELECT 
+				id AS member_id,
+				membership_start AS start,
+				membership_end AS end,
+				monthly_fee_cents,
+				'' AS note,
+				CURRENT_TIMESTAMP AS created_at,
+				CURRENT_TIMESTAMP AS updated_at
+			FROM members;
+		")
 	};
 
 	public static void RunMigrations() {
@@ -39,7 +51,7 @@ public static class Migrations {
 			db.InsertWithIdentity(new DbInfo { DbVer = 0 });
 		}
 
-		if(!db.DataProvider.GetSchemaProvider().GetSchema(db).Tables.Any(t => t.TableName == "Memberships")) {
+		if(!db.DataProvider.GetSchemaProvider().GetSchema(db).Tables.Any(t => t.TableName == "memberships")) {
 			db.CreateTable<Membership>();
 		}
 
